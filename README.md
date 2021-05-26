@@ -4,7 +4,7 @@ get json deep diff list
 # Usage
 
 ```js
-  const { jsonDeepDiffList } = require('../index');
+  const { jsonDeepDiffList } = require('json-deep-diff-list');
 
   const json_old = {
     name: 'Larry',
@@ -25,7 +25,7 @@ get json deep diff list
       bb: 'bb'
     }
   };
-  
+
   const json_new = {
     name: 'Xiaolei',
     age: 16,

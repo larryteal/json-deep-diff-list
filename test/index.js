@@ -58,4 +58,59 @@ describe('json deep diff list', function () {
     ]);
   });
 
+
+  it('should be no error when params is null', function () {
+    const json_old = null;
+    const json_new = null;
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+
+    expect(diffList).to.deep.equal([]);
+  });
+
+  it('should be no error when params is undefined', function () {
+    const json_old = undefined;
+    const json_new = undefined;
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+    
+    expect(diffList).to.deep.equal([]);
+  });
+
+  it('should be no error when params is string', function () {
+    const json_old = 'str1';
+    const json_new = 'str2';
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+    
+    expect(diffList).to.deep.equal([]);
+  });
+
+  it('should be no error when params is number', function () {
+    const json_old = 1;
+    const json_new = 2;
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+    
+    expect(diffList).to.deep.equal([]);
+  });
+
+  it('should be no error when params is function', function () {
+    const json_old = function f1() {};
+    const json_new = function f2() {};
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+    
+    expect(diffList).to.deep.equal([]);
+  });
+
+  it('should be no error when params is boolean', function () {
+    const json_old = true;
+    const json_new = false;
+
+    const diffList = jsonDeepDiffList(json_old, json_new);
+    
+    expect(diffList).to.deep.equal([]);
+  });
+
 });
