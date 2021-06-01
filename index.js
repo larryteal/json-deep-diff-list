@@ -1,5 +1,6 @@
-const _ = require('lodash');
 const jsonKeyPathList = require('json-key-path-list');
+
+const Utils = require('./utils.js');
 
 module.exports = {
   jsonDeepDiffList
@@ -8,22 +9,22 @@ module.exports = {
 function jsonDeepDiffList(old, new_) {
   const oldKeyPathList = jsonKeyPathList(old);
   const newKeyPathList = jsonKeyPathList(new_);
-  const intersectionKeyPathList = _.intersection(oldKeyPathList, newKeyPathList);
-  const delKeyPathList = _.difference(oldKeyPathList, intersectionKeyPathList);
-  const addKeyPathList = _.difference(newKeyPathList, intersectionKeyPathList);
+  const intersectionKeyPathList = Utils.intersection(oldKeyPathList, newKeyPathList);
+  const delKeyPathList = Utils.difference(oldKeyPathList, intersectionKeyPathList);
+  const addKeyPathList = Utils.difference(newKeyPathList, intersectionKeyPathList);
   const diffList = [];
 
   intersectionKeyPathList.forEach(path => {
-    const before = _.get(old, path);
-    const after = _.get(new_, path);
+    const before = Utils.get(old, path);
+    const after = Utils.get(new_, path);
     const op = 'replace'
-    if(!_.isEqual(before, after)) {
+    if(!Utils.isEqual(before, after)) {
       diffList.push({ op, path, before, after });
     }
   });
 
   delKeyPathList.forEach(path => {
-    const before = _.get(old, path);
+    const before = Utils.get(old, path);
     const after = undefined;
     const op = 'del';
     diffList.push({ op, path, before, after });
@@ -31,7 +32,7 @@ function jsonDeepDiffList(old, new_) {
 
   addKeyPathList.forEach(path => {
     const before = undefined;
-    const after = _.get(new_, path);
+    const after = Utils.get(new_, path);
     const op = 'add';
     diffList.push({ op, path, before, after });
   });

@@ -33,7 +33,6 @@
     "mocha": "^8.4.0"
   },
   "dependencies": {
-    "json-key-path-list": "^1.0.0",
-    "lodash": "^4.17.21"
+    "json-key-path-list": "^1.0.0"
   }
 }
